@@ -1,0 +1,33 @@
+{
+  "env": {
+    "commonjs": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/recommended",
+    "plugin:node/recommended",
+    "plugin:security/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+    "node/shebang": 0,
+    "node/no-unpublished-require": 0,
+    "no-var": 2,
+    "no-unused-vars": 0,
+    "no-path-concat": 2,
+    "comma-dangle": 0,
+    "array-bracket-newline": 2,
+    "prefer-const": 2,
+    "prefer-template": 2,
+    "template-curly-spacing": [2, "never"],
+    "eqeqeq": [2, "smart"],
+    "indent": 0,
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"]
+  }
+}
