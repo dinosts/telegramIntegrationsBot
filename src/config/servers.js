@@ -1,3 +1,5 @@
+'use strict';
+
 const servers = {
 	[process.env.SERVER1]: { url: process.env.SERVER1URL, pass: process.env.SERVER1PASS },
 	[process.env.SERVER2]: { url: process.env.SERVER2URL, pass: process.env.SERVER2PASS },
@@ -8,4 +10,5 @@ const servers = {
 	[process.env.SERVER7]: { url: process.env.SERVER7URL, pass: process.env.SERVER7PASS },
 	[process.env.SERVER8]: { url: process.env.SERVER8URL, pass: process.env.SERVER8PASS },
 };
+
 module.exports = servers;

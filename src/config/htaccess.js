@@ -1,6 +1,4 @@
 const htaccess = {
-	ids:
-		(process.env.users).split(','),
-
+  ids: process.env.users.split(','),
 };
 module.exports = htaccess;

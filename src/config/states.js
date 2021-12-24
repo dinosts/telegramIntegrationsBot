@@ -1,2 +1,1 @@
-const states = ['YES', 'NO'];
-module.exports = states;
+module.exports = ['YES', 'NO'];
