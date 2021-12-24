@@ -1,14 +1,13 @@
 'use strict';
 
-const { BaseError } = require('../../utils');
-const htaccess = require('../../config/htaccess');
+const { htaccess } = require('../../config');
 
 const authMessage = (req) => {
   const { ids } = htaccess;
 
   // eslint-disable-next-line eqeqeq
   if (!ids.find((id) => id == req.body.message.from.id)) {
-    throw new BaseError('Not authorized, please pm the adminstrator.');
+    throw new Error('Not authorized, please pm the adminstrator.');
   }
 };
 

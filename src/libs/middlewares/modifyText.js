@@ -1,7 +1,5 @@
 'use strict';
 
-const { BaseError } = require('../../utils');
-
 const modifyText = (text) => {
   try {
     text = text.replace('/', '');
@@ -9,7 +7,7 @@ const modifyText = (text) => {
       message: text,
     };
   } catch (err) {
-    throw new BaseError('Could not modify message');
+    throw new Error('Could not modify message');
   }
 };
 

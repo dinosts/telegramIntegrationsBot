@@ -1,8 +1,9 @@
+/* eslint-disable security/detect-object-injection */
 'use strict';
 
 const axios = require('axios');
-const { BaseError } = require('../utils');
-const servers = require('../config/servers');
+const { Error } = require('../utils');
+const { servers } = require('../config');
 const removeUndefined = require('../libs/tools/removeUndefined');
 const beautify = require('json-beautify');
 
@@ -20,18 +21,17 @@ const statusController = async (set) => {
     }
 
     if (message.split(' ').length !== 2) {
-      throw new BaseError('used status wrong.');
+      throw new Error('used status wrong.');
     }
 
     const [command, target] = message.split(' ');
     const serverNames = Object.keys(servers);
 
     if (!serverNames.find((server) => server === target)) {
-      throw new BaseError('server not found');
+      throw new Error('server not found');
     }
 
     const { data: response } = await axios.post(
-      // eslint-disable-next-line security/detect-object-injection
       `${servers[target].url}/api/v1/status/check`,
       { secret: servers[target].pass }
     );

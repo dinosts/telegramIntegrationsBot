@@ -2,10 +2,9 @@
 
 const botListener = require('express').Router();
 const axios = require('axios');
-const authMessage = require('../libs/middlewares/authMessage');
-const modifyText = require('../libs/middlewares/modifyText');
+
+const { authMessage, modifyText } = require('../libs/middlewares');
 const routes = require('../router');
-const { BaseError } = require('../utils');
 
 const { TELEGRAM_API, URI, WEBHOOK_URL, PASS } = process.env;
 
@@ -28,7 +27,7 @@ botListener.post(URI, async (req, res) => {
     authMessage(req);
 
     if (!set.message) {
-      throw new BaseError('Message Not Found', 404);
+      throw new Error('Message Not Found', 404);
     }
 
     routes(set);
