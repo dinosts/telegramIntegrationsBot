@@ -27,7 +27,7 @@ botListener.post(URI, async (req, res) => {
     authMessage(req);
 
     if (!set.message) {
-      throw new Error('Message Not Found', 404);
+      throw new Error('Message Not Found');
     }
 
     routes(set);

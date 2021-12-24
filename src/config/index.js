@@ -2,7 +2,7 @@
 
 module.exports = {
 	htaccess: {
-		ids: (process.env.users).split(','),
+		ids: process.env.users.split(','),
 	},
 	servers:{
 		[process.env.SERVER1]: { url: process.env.SERVER1URL, pass: process.env.SERVER1PASS },

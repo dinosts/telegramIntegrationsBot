@@ -2,7 +2,6 @@
 'use strict';
 
 const axios = require('axios');
-const { Error } = require('../utils');
 const { servers } = require('../config');
 const removeUndefined = require('../libs/tools/removeUndefined');
 const beautify = require('json-beautify');
