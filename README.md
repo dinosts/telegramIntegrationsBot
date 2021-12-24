@@ -1,1 +1,1 @@
-Telegram bot for softweb 
+Telegram bot

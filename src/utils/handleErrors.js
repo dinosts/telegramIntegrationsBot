@@ -1,6 +1,7 @@
 'use strict';
 
-const logger = require('../logger');
+const axios = require('axios');
+const logger = require('./logger');
 
 const handleErrors = (err, req, res, next) => {
   const { statusCode, message } = err;

@@ -5,7 +5,9 @@
   "main": "src/bin/www",
   "scripts": {
     "start": "node src/bin/www",
-    "dev": "nodemon src/bin/www"
+    "dev": "nodemon src/bin/www",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "repository": {
     "type": "git",
@@ -30,5 +32,8 @@
     "nodemon": "^2.0.15",
     "pino-pretty": "^7.2.0",
     "prettier-eslint": "^13.0.0"
+  },
+  "engines": {
+    "node": ">=8.3.0"
   }
 }

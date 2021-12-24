@@ -1,54 +1,45 @@
-
-
 'use strict';
 
 const botListener = require('express').Router();
 const axios = require('axios');
 const authMessage = require('../libs/middlewares/authMessage');
 const modifyText = require('../libs/middlewares/modifyText');
-const Routes = require('../Router/Routes');
-const BaseError = require('../utils/errors/BaseError');
+const routes = require('../router');
+const { BaseError } = require('../utils');
 
 const { TELEGRAM_API, URI, WEBHOOK_URL, PASS } = process.env;
 
 botListener.post(URI, async (req, res) => {
-	let chatId = -629123474;
-	try {
+  let chatId = -629123474;
 
-		chatId = req.body.message.chat.id;
+  try {
+    chatId = req.body.message.chat.id;
 
-		const { message: { text } } = req.body;
+    const {
+      message: { text },
+    } = req.body;
 
-		const set = {
-			req,
-			...modifyText(text),
-			chatId
-		};
+    const set = {
+      req,
+      ...modifyText(text),
+      chatId,
+    };
 
+    authMessage(req);
 
-		authMessage(req);
+    if (!set.message) {
+      throw new BaseError('Message Not Found');
+    }
 
-		if (!set.message) throw new BaseError('Message Not Found');
+    routes(set);
+  } catch (err) {
+    await axios.post(`${TELEGRAM_API}/sendMessage`, {
+      chat_id: chatId,
+      text: err.message,
+    });
+  }
 
-		Routes(set);
-
-
-	} catch (err) {
-
-		await axios.post(`${TELEGRAM_API}/sendMessage`, { chat_id: chatId, text: err.message });
-
-	}
-
-
-
-
-
-
-
-
-	return res.send();
+  return res.send();
 });
 
-
 module.exports = botListener;
-
