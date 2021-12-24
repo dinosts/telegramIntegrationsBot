@@ -3,15 +3,19 @@
 const axios = require('axios');
 const { BaseError } = require('../utils');
 const servers = require('../config/servers');
+const removeUndefined = require('../libs/tools/removeUndefined');
+const beautify = require('json-beautify');
+
 
 const statusController = async (set) => {
 	const { chatId, req, message } = set;
 
 	try {
 		if (message.split(' ').length === 1) {
+			const simple = Object.values(removeUndefined(Object.keys(servers)));
 			await axios.post(`${process.env.TELEGRAM_API}/sendMessage`, {
 				chat_id: chatId,
-				text: Object.keys(servers),
+				text: beautify(simple, null, 2, 80)
 			});
 			return;
 		}
@@ -32,6 +36,8 @@ const statusController = async (set) => {
 			`${servers[target].url}/api/v1/status/check`,
 			{ secret: servers[target].pass }
 		);
+
+
 
 		const { bridge, erp, eshop } = response;
 
